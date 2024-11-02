@@ -2,14 +2,16 @@
     "name": "hotelhuntbackend",
     "version": "0.0.1",
     "description": "",
-    "main": "index.js",
+    "main": "src/index.js",
     "type": "module",
     "scripts": {
-        "dev": "nodemon index.js"
+        "dev": "nodemon src/index.js",
+        "test": "vitest run"
     },
     "private": true,
     "devDependencies": {
-        "nodemon": "^3.1.7"
+        "nodemon": "^3.1.7",
+        "vitest": "^2.1.4"
     },
     "dependencies": {
         "amadeus": "^11.0.0",
