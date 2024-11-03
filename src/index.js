@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express from "express";
-import testRouter from "./routers/testRouter.js";
+import getHotelsRouter from "./routers/getHotelsRouter.js";
 
 // Check for environment variables
 if(!process.env.AMADEUS_API_KEY || !process.env.AMADEUS_API_SECRET) {
@@ -21,7 +21,7 @@ const app = express();
 
 // Express setup
 app.use(express.json());
-app.use("/testRouter", testRouter);
+app.use("/gethotels", getHotelsRouter);
 
 // Listen for requests
 app.listen(3001, () => {
