@@ -24,8 +24,8 @@ describe("Running getHotelsAroundGeocode function", () => {
         expect(data[0]).toHaveProperty("distance");
     });
 
-    it("Returns error when no hotels are found for location", async () => {
-        expect(hotels.getHotelsAroundGeocode(42.21, -81.15, 1)).rejects.toThrow("Nothing found for the requested criteria");
+    it("Returns empty array when no hotels are found for location", async () => {
+        expect(hotels.getHotelsAroundGeocode(42.21, -81.15, 1)).resolves.toEqual([]);
     });
 
     it("Throws error if incorrect parameter is passed", async () => {

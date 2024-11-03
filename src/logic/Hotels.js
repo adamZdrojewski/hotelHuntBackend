@@ -42,7 +42,12 @@ export default class Hotels {
                 radiusUnit: "MILE"
             });
         } catch(err) {
-            throw new Error(err.description[0].detail);
+            // Check if nothing was found
+            if(err.description[0].detail === "Nothing found for the requested criteria") {
+                return [];
+            } else {
+                throw new Error(err.description[0].detail);
+            }
         }
 
         // Compile output
