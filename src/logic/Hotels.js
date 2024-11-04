@@ -64,4 +64,29 @@ export default class Hotels {
         // Return output
         return output;
     }
+
+    async getHotelPrices(hotelIds) {
+        try {
+            // Make request
+            const res = await this.amadeus.shopping.hotelOffersSearch.get({
+                hotelIds
+            });
+
+            // Iterate through hotels
+            let output = {};
+            for(let i = 0; i < res.data.length; i++) {
+                output[res.data[i].hotel.hotelId] = res.data[i].offers[0].price.total;
+            }
+
+            // Return
+            return output;
+        } catch(err) {
+            // Check if error is from finding no rooms
+            if(err.description[0].detail === "NO ROOMS AVAILABLE AT REQUESTED PROPERTY") {
+                return {};
+            } else {
+                throw err.description[0].detail;
+            }
+        }
+    }
 }

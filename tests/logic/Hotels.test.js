@@ -41,3 +41,33 @@ describe("Running getHotelsAroundGeocode function", () => {
         expect(hotels.getHotelsAroundGeocode(10000000000000, 10000000000000)).rejects.toThrow();
     });
 });
+
+describe("Running getHotelPrices function", () => {
+    let hotels = new Hotels();
+
+    it("Returns data from API when correct parameters are passed", async () => {
+        // Get data
+        let data = await hotels.getHotelPrices("CYHSHGVC,MVLASNEW");
+
+        // Check data
+        expect(data).toHaveProperty("CYHSHGVC");
+        expect(data).toHaveProperty("MVLASNEW");
+    });
+
+    it("Returns undefined for hotels that didn't have any offers listed", async () => {
+        // Get data
+        let data = await hotels.getHotelPrices("YXSKYGWL,MVLASNEW");
+
+        // Check data
+        expect(data.YXSKYGWL).toBe(undefined);
+        expect(data.MVLASNEW).not.toBe(undefined);
+    }, 30000);
+
+    it("Returns empty object if no hotels have offers listed", async () => {
+        expect(await hotels.getHotelPrices("YXSKYGWL")).toStrictEqual({});
+    }, 30000);
+
+    it("Throws error if API fails", async () => {
+        expect(hotels.getHotelPrices("ABC")).rejects.toThrow();
+    });
+});
