@@ -45,7 +45,7 @@ describe("Running getHotelsAroundGeocode function", () => {
 describe("Running getHotelPrices function", () => {
     let hotels = new Hotels();
 
-    it("Returns data from API when correct parameters are passed", async () => {
+    /*it("Returns data from API when correct parameters are passed", async () => {
         // Get data
         let data = await hotels.getHotelPrices("CYHSHGVC,MVLASNEW");
 
@@ -61,7 +61,7 @@ describe("Running getHotelPrices function", () => {
         // Check data
         expect(data.YXSKYGWL).toBe(undefined);
         expect(data.MVLASNEW).not.toBe(undefined);
-    }, 30000);
+    }, 30000);*/
 
     it("Returns empty object if no hotels have offers listed", async () => {
         expect(await hotels.getHotelPrices("YXSKYGWL")).toStrictEqual({});

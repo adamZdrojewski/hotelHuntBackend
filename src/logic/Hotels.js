@@ -62,6 +62,9 @@ export default class Hotels {
         }
 
         // Return output
+        if(output.length > 20) {
+            output.length = 20;
+        }
         return output;
     }
 
@@ -82,10 +85,10 @@ export default class Hotels {
             return output;
         } catch(err) {
             // Check if error is from finding no rooms
-            if(err.description[0].detail === "NO ROOMS AVAILABLE AT REQUESTED PROPERTY") {
+            if(err.description[0].detail === "Provider Error - NO ROOMS AVAILABLE AT REQUESTED PROPERTY" || err.description[0].detail === "Provider Error - RATE NOT AVAILABLE FOR REQUESTED DATES" || err.description[0].detail === "Provider Error - ROOM OR RATE NOT FOUND") {
                 return {};
             } else {
-                throw err.description[0].detail;
+                throw new Error(err.description[0].detail);
             }
         }
     }
