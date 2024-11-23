@@ -1,3 +1,7 @@
 /node_modules
 .env
 testing.http
+hotels.db
+hotels.db-shm
+hotels.db-wal
+
