@@ -29,11 +29,31 @@ export default class Hotels {
 				address: result[i].Address,
 				description: result[i].Description,
 				coordinates: result[i].Map,
-				phoneNumber:result[i].PhoneNumber 
+				phoneNumber:result[i].PhoneNumber,
+				rate: this.getHotelRate(result[i].HotelRating)
 			});
 		}
 
 		// Return found hotels
 		return hotels;
+	}
+
+	getHotelRate(rating) {
+		switch(rating) {
+			case "All":
+				return "$" + this.getRandomNumber(400, 650).toFixed(2);
+			case "FourStar":
+				return "$" + this.getRandomNumber(300, 450).toFixed(2);
+			case "ThreeStar":
+				return "$" + this.getRandomNumber(200, 350).toFixed(2);
+			case "TwoStar":
+				return "$" + this.getRandomNumber(130, 230).toFixed(2);
+			case "OneStar":
+				return "$" + this.getRandomNumber(70, 150).toFixed(2);
+		}
+	}
+
+	getRandomNumber(min, max) {
+		return Math.random() * (max - min) + min;
 	}
 }

@@ -25,6 +25,7 @@ describe("Running getHotelsInCity function", () => {
 		expect(data[0]).toHaveProperty("description");
 		expect(data[0]).toHaveProperty("coordinates");
 		expect(data[0]).toHaveProperty("phoneNumber");
+		expect(data[0]).toHaveProperty("rate");
 	});
 
 	it("Returns empty array when no hotels are found for city", () => {
