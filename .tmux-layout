@@ -1,0 +1,10 @@
+tmux new-session -ds $session_name -c $project_dir
+
+tmux rename-window -t "$session_name:1" Editor
+tmux send-keys -t "$session_name:1" nvim C-m
+
+tmux new-window -t $session_name -c $project_dir -n "Server"
+tmux send-keys -t "$session_name:2" "npm run dev" C-m
+
+tmux new-window -t $session_name -c $project_dir -n "Git"
+tmux send-keys -t "$session_name:3" lazygit C-m
